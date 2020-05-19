@@ -32,7 +32,7 @@ public class ParameterServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res)throws IOException,ServletException {
 		Map<String,Object> rmap = new HashMap<String, Object>();
-		HashMapBinder hmb = new HashMapBinder();
+		HashMapBinder hmb = new HashMapBinder(req);
 		hmb.binder(rmap);
 		Object key[] = null;
 		key = rmap.keySet().toArray();

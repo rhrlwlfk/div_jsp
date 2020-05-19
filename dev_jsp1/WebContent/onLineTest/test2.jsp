@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String htest_1 = request.getParameter("htest1");		
+	Cookie chtest1 = new Cookie("c_htest1", htest_1);
+	chtest1.setMaxAge(60*60);
+	response.addCookie(chtest1);
+%>
 <!DOCTYPE html>
 <html>
 <head>

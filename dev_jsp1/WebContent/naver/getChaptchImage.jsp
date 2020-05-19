@@ -8,7 +8,7 @@
 		  	String clientId = "HhYnb2O2RzO8HTZf_UlL"; //애플리케이션 클라이언트 아이디값";
 			String clientSecret = "ToNCRyBUXT"; //애플리케이션 클라이언트 시크릿값";
 			
-			String key = "77h30Pv0LKSg6w3r";
+			String key = "jgTcXm4UpJR4lk2z";
 			String apiURL = "https://openapi.naver.com/v1/captcha/ncaptcha.bin?key=" + key;
 			
 	        Map<String, String> requestHeaders = new HashMap<>();

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    	String htest1 = request.getParameter("htest1");
-    	String htest2 = request.getParameter("htest2");
-    	
-    %>
+<%
+	String htest_2 = request.getParameter("htest2");		
+	Cookie chtest2 = new Cookie("c_htest2", htest_2);
+	chtest2.setMaxAge(60*60);
+	response.addCookie(chtest2);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,8 +53,6 @@ checkbox는 체크할수도있고 안할수도있다. true,false로 제어해야
   다음문제에서 푸는사람의 답을 가져온다. 수험자 몰래 숨겨서 id로 접근하자  
   -->
 <form id="f_test1" method="get" action="test4.jsp">
-<input type="hidden" name="htest1" value="<%=htest1 %>">
-<input type="hidden" name="htest2" value= "<%=htest2 %>">
 <input type="hidden" name="htest3" value="0">
 문제3
 자바를 이용하여 오라클과 같은 db서버에 접속하여 조회, 입력,수정, 삭제와 같은 업무처리를

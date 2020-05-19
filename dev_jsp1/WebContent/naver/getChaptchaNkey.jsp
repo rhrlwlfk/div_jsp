@@ -24,7 +24,8 @@
               responseBody.append(line);
           	
     	  	}
-           line = responseBody.toString();
+           line = responseBody.toString();//{"key" :""}
+           
       }
       else{
     	  

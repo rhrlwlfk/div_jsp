@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    //이것은 쿠키를 사용할 경우 모두 필요없는 부분.
-    	String htest1 = request.getParameter("htest1");
-    	String htest2 = request.getParameter("htest2");
-    	String htest3 = request.getParameter("htest3");
-    	String htest4 = request.getParameter("htest4");
-    	
-    %>
+<%
+	String htest_3 = request.getParameter("htest3");		
+	Cookie chtest3 = new Cookie("c_htest3", htest_3);
+	chtest3.setMaxAge(60*60);
+	response.addCookie(chtest3);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,9 +53,6 @@ checkbox는 체크할수도있고 안할수도있다. true,false로 제어해야
   다음문제에서 푸는사람의 답을 가져온다. 수험자 몰래 숨겨서 id로 접근하자  
   -->
 <form id="f_test1" method="get" action="send.jsp">
-<input type="hidden" name="htest1" value="<%=htest1 %>">
-<input type="hidden" name="htest2" value= "<%=htest2 %>">
-<input type="hidden" name="htest3" value= "<%=htest3 %>">
 <input type="hidden" name="htest4" value="0">
 문제4
 Bean의 Scope에 대한 설명으로 틀린 것은?<br>

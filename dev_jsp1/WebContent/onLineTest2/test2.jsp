@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String h_no  = request.getParameter("h_no");
-	Cookie c_hno = new Cookie("c_hno",h_no);
-	c_hno.setMaxAge(60*60);
-	response.addCookie(c_hno);
+    <%
+	String htest_1 = request.getParameter("htest1");		
+	Cookie chtest1 = new Cookie("c_htest1", htest_1);
+	chtest1.setMaxAge(60*60);
+	response.addCookie(chtest1);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>문제1</title>
+<title>문제2</title>
 <%@ include file="../common/jEasyUICommon.jsp"%>
 <script type="text/javascript">
    //수험자가 선택한 답안을 
@@ -24,20 +24,25 @@
       		}
       	}
    }   
+   //이전문제로 이동하기
+   function prev(){
+	   //이렇게 이동하기는 주소가 바뀌는 성격이다. 그래서 redirect이다. 특징 유지가안된다,주소가 바뀐다,get(방식)
+	   location.href="test1.jsp";
+   }
    //다음문제로 넘길 때
    function next(){
 	   //수험자가 입력한 답안 저장하기
 	   var temp = 1;
 	   for(var i=0;i<document.getElementById("f_test1").cb.length;i++){
 		   if(document.getElementById("f_test1").cb[i].checked==1){
-			   document.getElementById("f_test1").htest1.value = temp;
+			   document.getElementById("f_test1").htest2.value = temp;
 		   }
 		   else{
 			   temp = temp + 1;
 		   }
 	   }
 	   alert("temp:" + temp);
-       document.getElementById("f_test1").submit();//전송하겠다. f_test1에다가 그럼 action=test2.jsp했으니가 일로간다.
+       document.getElementById("f_test1").submit();
        //$("#f_test1"){      } 
    }
 </script>
@@ -47,21 +52,22 @@
 checkbox는 체크할수도있고 안할수도있다. true,false로 제어해야되고 이안에 체크된애들이  form태그로 넘어가는거다.
   다음문제에서 푸는사람의 답을 가져온다. 수험자 몰래 숨겨서 id로 접근하자  
   -->
-<form id="f_test1" method="get" action="test2.jsp">
-<input type="hidden" name="htest1" value="0">
-
-문제1
-서블릿 메소드의 호출 순서로 맞는 것은? <br>
+<form id="f_test1" method="get" action="test3.jsp">
+<input type="hidden" name="htest2">
+문제2
+조회한 결과를 DB서버에서 가져온 후 결과를 List에 담았다. <br>
+이것을 화면단에 출력하고자 할 때 사용할 메소드 이름은 무엇인지 고르시오. <br>
 <input id="chk" name="cb" type="checkbox" onChange="test(0)">
-① init() - service() - destroy() <br>
+① forward(request, response)<!-- 유지하고자할떄 --><br>
 <input id="chk" name="cb" type="checkbox" onChange="test(1)">
-② service() - destroy() - init() <br>
+② sendRedirect("페이지 이름“)<!-- 얘는 아니다 --><br>
 <input id="chk" name="cb" type="checkbox" onChange="test(2)">
-③ destroy() - init() - service() <br>
+③ toString()<!-- 애는 아니다. --><br>
 <input id="chk" name="cb" type="checkbox" onChange="test(3)">
-④ doGet() - destroy() - init() - service()
+④ print()<!-- 애는아니다. --><br>
 </form>
 <br>
+<button onClick="prev()">이전문제</button>
 <button onClick="next()">다음문제</button>
 </body>
 </html>

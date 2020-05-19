@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>파라미터출력</title>
-</head>dd
+<title>Insert title here</title>
+</head>
 <body>
-name 파라미터값: <%=request.getParameter("name").toUpperCase() %>
+
 </body>
 </html>
