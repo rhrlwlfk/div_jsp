@@ -1,14 +1,12 @@
-package jsp.dept;
+package com.mvc2;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,13 +15,19 @@ import org.apache.log4j.Logger;
 
 import com.util.HashMapBinder;
 
-@WebServlet(urlPatterns="/dept1/deptList.km")
-public class DeptController2 extends HttpServlet{
-	Logger logger = Logger.getLogger(DeptController2.class);
+import jsp.dept.DeptDao;
+
+public class FrontMVC2 extends HttpServlet {
+	Logger logger = Logger.getLogger(FrontMVC2.class);
 	public void doService(HttpServletRequest req,
             HttpServletResponse res) throws ServletException, IOException {
+			logger.info("doGet 호출성공");
+			String requestURI  = req.getRequestURI();
+			String contextPath = req.getContextPath();
+			String command 	   = requestURI.substring(contextPath.length() +1);
+			Controller controller = null;
+			logger.info("command" + command);
 		
-			
 	}
 	  @Override
 	  public void doGet(HttpServletRequest req,
@@ -35,6 +39,8 @@ public class DeptController2 extends HttpServlet{
 	   @Override
 	   public void doPost(HttpServletRequest req,
 	             HttpServletResponse res) throws ServletException, IOException {
-	      doService(req,res);
+		   doService(req, res);
+		   logger.info("doPost 호출성공");
+	     
 	   }
 }
