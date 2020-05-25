@@ -22,12 +22,45 @@ public class FrontMVC2 extends HttpServlet {
 	public void doService(HttpServletRequest req,
             HttpServletResponse res) throws ServletException, IOException {
 			logger.info("doGet 호출성공");
-			String requestURI  = req.getRequestURI();
-			String contextPath = req.getContextPath();
+			//==>dev_jsp/member/meberList.mvc2
+			String requestURI  = req.getRequestURI();// PORT번호다음 경로를 가져온것이다. 현재주소를가져온다
+			logger.info("requestURL:"+requestURI);//memberList.mvc2?crud=sel&6
+			// ==> dev_jsp
+			String contextPath = req.getContextPath();//프로젝트명
+			// ==> /member/memberList.mvc2
+			logger.info("contexPath:" +contextPath);
 			String command 	   = requestURI.substring(contextPath.length() +1);
 			Controller controller = null;
-			logger.info("command" + command);
-		
+			logger.info("command :" + command);	
+			//insert here - 인스턴스화 and process call 
+			String crud = null;
+			crud = req.getParameter("crud");
+			logger.info("crud==>" +crud);
+			//insert here - 인스턴스화 an d process call
+			try { 
+				controller = ControllerMapper.getController(command, crud);
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+			if(controller instanceof MemberController) {
+				logger.info("MemberController타입이면...회원관리 업무임.");
+				String path = controller.process(req, res);
+				String pageMove[]  = null;
+				pageMove = path.split(":");
+				for(int i=0;i<pageMove.length;i++) {
+					logger.info("pageMove:" + pageMove[i]);
+				}
+				//안전하게 처리
+				if(pageMove !=null) {
+					String path2 = pageMove[1];
+					if("redirect".equals(pageMove[0])) {
+						res.sendRedirect(path2);
+					}else {
+						RequestDispatcher view  = req.getRequestDispatcher(path2);
+						view.forward(req, res);
+					}
+				}
+			}
 	}
 	  @Override
 	  public void doGet(HttpServletRequest req,

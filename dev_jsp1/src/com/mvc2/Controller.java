@@ -7,6 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 public interface Controller {
 	public String process(HttpServletRequest req ,HttpServletResponse res)
 	throws ServletException;
-		
+	
 	
 }
