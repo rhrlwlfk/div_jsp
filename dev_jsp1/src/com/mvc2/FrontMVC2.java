@@ -50,6 +50,7 @@ public class FrontMVC2 extends HttpServlet {
 				for(int i=0;i<pageMove.length;i++) {
 					logger.info("pageMove:" + pageMove[i]);
 				}
+				
 				//안전하게 처리
 				if(pageMove !=null) {
 					String path2 = pageMove[1];

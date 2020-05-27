@@ -2,10 +2,8 @@
     pageEncoding="UTF-8"%>
 <%
 	String s_name = (String)session.getAttribute("s_name");
-	if(s_name ==null){
-		//로그인했다고 치자 
-		s_name = "이순신";
-	}
+	
+	out.print(s_name);
 %>
 <!DOCTYPE html>
 <html>
@@ -30,49 +28,16 @@
 	<script type="text/javascript">
 	//쿠키 정보를 담을 전역변수 선언하기
 		var c_name = null;
+		function memberList() {
+			alert("회원 목록 호출  성공");
+		}
 		function login(){
-			var u_id = $("#tb_id").val();
-		    var u_pw = $("#tb_pw").val();
-		    //사용자가 입력한 아이디와 비번 확인하기
-		    //alert("사용자가 입력한 아이디:"+u_id+", 비번:"+u_pw);
-			//$("#f_login").attr("action","loginAction.jsp");//자바코드를 사용함.
-			//$("#f_login").submit();
-			fetch("loginAction.jsp?mem_id="+u_id+"&mem_pw="+u_pw,{
-				method: "GET"
-//			}).then(res => res.text()).then(res => console.log(res));
-			}).then(res => res.text()).then(function(text){
-				//alert("text: "+text);
-				if("비밀번호가 틀립니다." ==text.trim()){//비밀번호가 틀립니다.
-					alert("비밀번호가 틀립니다.");
-					$("#d_login").show();
-					$("#d_logout").hide();
-				}
-				else if("아이디가 존재하지 않습니다." ==text.trim()){//비밀번호가 틀립니다.
-					alert("비밀번호가 틀립니다.");
-					$("#d_login").show();
-					$("#d_logout").hide();
-				}
-				else{
-					c_name = text.trim();
-					//$.cookie('c_name',c_name);
-					$.cookie('c_name','<%=s_name%>');//서버에서 갖고온거 
-					//로그인 화면은 숨기기
-					$("#d_login").hide();
-					//로그아웃 화면을 보여주기
-					$("#d_logout").show();
-					$("#logok").text(c_name+"님");
-					//식당 목록을 보여주기
-					$('#d_resList').show();								
-				}
-			});
+			$("#f_login").attr("method","get");
+			$("#f_login").attr("action","./login.mvc2");
+			$("#f_login").submit();
 		}
 		function logout(){
-			$.cookie('c_name',null);
-			u_id = $("#tb_id").textbox('setValue','');
-			u_pw = $("#tb_pw").textbox('setValue','');
-			$('#d_login').show();
-			$('#d_logout').hide();
-			$('#d_resList').hide();			
+			location.href = "logout.jsp";
 		}
 		function like(u_num){
 			$.ajax({
@@ -112,7 +77,7 @@
 							  method:"post" 
 						   }).then(res => res.text()).then(function(text){
 							   var imsi = text.trim();
-							   alert("imsi==>"+ imsi);
+							   alert(	"imsi==>"+ imsi);
 							   var resDoc = JSON.parse(imsi);
 							   var resList = '<table>';
 							   for(var i=0;i<resDoc.length;i++){
@@ -133,29 +98,22 @@
 	</script>
 </head>
 <body>
-<script type="text/javascript">
-//DOM구성이 완료 되었을때 - 크롬브라우저가 mapDesign2.html문서에 들어있는 태그들에 대한 스캔이 완료
-	$(document).ready(function (){
-		if(c_name !=null && c_name.length() > 0){//쿠키값이 존재하니? 네:로그인을 했어요, 아니:로그인 안했음.
-			$('#d_login').hide();
-			$('#d_logout').show();
-			$('#d_resList').show();				
-		}else{
-			$('#d_login').show();
-			$('#d_logout').hide();
-			$('#d_resList').hide();				
-		}
-	});
-</script>
 <table border="1" align="center" width="900" height="600">
 	<tr>
 		<td width="700">
 		<div id="d_map" style="width:695px; height:600px;"></div>
 		</td>
 		<td width="200" valign="top">
+<%
+	if(s_name == null) {
+		
+	
+%>
 <!--======================== 로그인 화면 시작 ======================-->		
+
 		<div id="d_login">
 			<form id="f_login">
+			<input type="hidden" name="crud" value="login">
 			<table width="100%" border="0" borderColor="blue">
 				<tr>
 					<td>
@@ -174,13 +132,18 @@
 			</form>
 		</div>
 <!--====================== 로그인 화면  끝  ======================-->		
+<%
+	} 
+	else {
+		
+%>
 <!--======================== 로그아웃 화면 시작 ======================-->		
 		<div id="d_logout">
 			<form id="f_logout">
 			<table width="100%" border="0" borderColor="blue">
 				<tr>
 					<td style="width:110px">
-						<span id="logok"></span>
+						<span id="logok"><%=s_name %>님 환영합니다.</span>
 					</td>
 					<td>
 					<a id="btn_logout" style="height:30px"
@@ -190,16 +153,42 @@
 			</table>
 			</form>
 		</div>
-<!--====================== 로그 아웃 화면  끝  ======================-->		
+<!--====================== 로그 아웃 화면  끝  ======================-->	
+<%
+	}
+%>	
+
+<!--###################### 업무 목록 시작  ######################-->
+ <div class="easyui-panel" style="padding:5px">
+        <ul class="easyui-tree">
+                    <li data-options="state:'closed'">
+                        <span>회원관리</span>
+                        <ul>
+                            <li>
+                                <span>회원가입</span>
+                            </li>
+                            <li>
+                                <span>정보수정</span>
+                            </li>
+                            <li>
+                                <span><a href="javascript:memberList()">회원탈퇴</a></span>
+                            </li>
+                                                        <li>
+                                <span><a href="javascript:memberList()">회원목록</a></span>
+                            </li>
+                        </ul>
+        </ul>
+    </div>
+<!--###################### 업무 목록  끝    ######################-->
+ <div class="easyui-panel" style="padding:5px">
+
+    </div>
 <!--###################### 식당 목록 시작  ######################-->
 	<div id="d_resList">식당목록</div>
 <!--###################### 식당 목록  끝    ######################-->
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$("#d_login").show();
-			$("#d_logout").hide();
-		
 		var map = new google.maps.Map(document.getElementById('d_map'),{
 			 zoom: 14
 		    ,center: new google.maps.LatLng(37.478513,126.877800)
@@ -255,6 +244,21 @@
 		   }///////////////////end of success
 		});////////////////////end of ajax
 		});////////////////////end of ready
+	</script>
+	<!-- ======================== 메인 페이지 코드 끝 ======================== -->
+	<!-- ====================  모달 창에 필요한 코드 시작  ======================== -->
+	<div id="dl_memList">Dialog Content.</div>
+	<!-- ====================  모달 창에 필요한 코드 끝  ======================== -->
+	<script type="text/javascript">
+	('#dl_memList').dialog({
+	    title: '회원목록',
+	    width: 400,
+	    height: 200,
+	    closed: false,
+	    cache: false,
+	    href: 'memberList.jsp',
+	    modal: true
+	});
 	</script>
 </body>
 </html>

@@ -20,6 +20,7 @@
 DML구문 즉 select, insert , update, delete이 작성된 xml파일의 물리적인 위치와 파일명을 등록 하기
 여러개로 쓸수있다. 
  -->
+ 		<mapper resource="orm/mybatis/mapper/member.xml"  />
 		<mapper resource="orm/mybatis/mapper/emp.xml"  />
 		<mapper resource="orm/mybatis/mapper/book.xml" />
 		<mapper resource="orm/mybatis/mapper/dept.xml" />
