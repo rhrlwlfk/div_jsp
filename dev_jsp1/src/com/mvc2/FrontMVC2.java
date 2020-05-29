@@ -67,14 +67,14 @@ public class FrontMVC2 extends HttpServlet {
 	  public void doGet(HttpServletRequest req,
 			  HttpServletResponse res)throws ServletException,IOException {
 		  //예외처리는 반드시 있어야한다.
-		  doService(req, res);
 		  logger.info("doGet 호출성공");
+		  doService(req, res);
 	  }
 	   @Override
 	   public void doPost(HttpServletRequest req,
 	             HttpServletResponse res) throws ServletException, IOException {
-		   doService(req, res);
 		   logger.info("doPost 호출성공");
+		   doService(req, res);
 	     
 	   }
 }

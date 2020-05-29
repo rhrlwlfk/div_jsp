@@ -107,10 +107,10 @@
 		<location>/error/error500.jsp</location>
 	</error-page>
 	!-->
-	<error-page>
+<!-- 	<error-page>
 		<exception-type>java.lang.NullPointerException</exception-type>
 		<location>/error/errorNullPointer.jsp</location>
-	</error-page>
+	</error-page> -->
 	<resource-ref>
 		<description>Connection</description>
 		<res-ref-name>jdbc/dbPool</res-ref-name>

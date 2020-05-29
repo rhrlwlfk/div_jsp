@@ -19,4 +19,11 @@ public class MemberLogic {
 		memList = mDao.memberList(pMap);
 		return memList;
 	}
+	public int memberAdd(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		int result =0;
+		result = mDao.memberAdd(pMap);
+		logger.info("Member Logic result:"+ result);
+		return result;
+	}
 }

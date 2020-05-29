@@ -17,19 +17,35 @@
 			text-align: left;
 		}
 	</style>
-    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/color.css">
-    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">
+   
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-FKKja8sdfgMggjEvEa5agaP6D9wBd6s"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<%@ include file="../common/jEasyUICommon.jsp" %>
 	<script type="text/javascript">
 	//쿠키 정보를 담을 전역변수 선언하기
 		var c_name = null;
 		function memberList() {
-			alert("회원 목록 호출  성공");
+			//alert("회원 목록 호출  성공");
+			$('#dl_memList').dialog({
+				title:"회원관리",
+			    width: 400,
+			    height: 200,
+			    closed: false,
+			    cache: false,
+			    href: 'memberList.jsp',
+			    modal: true
+			});
+		}
+		function fun() {
+			alert("mapDesign3.jsp fun호출");
+			$('#dl_memList').dialog({
+				title:'회원관리',
+			    width: 400,
+			    height: 200,
+			    closed: false,
+			    cache: false,
+			    href: './member.mvc2?crud=memberList',
+			    modal: true
+			});
 		}
 		function login(){
 			$("#f_login").attr("method","get");
@@ -171,7 +187,7 @@
                                 <span>정보수정</span>
                             </li>
                             <li>
-                                <span><a href="javascript:memberList()">회원탈퇴</a></span>
+                                <span>회원탈퇴</span>
                             </li>
                                                         <li>
                                 <span><a href="javascript:memberList()">회원목록</a></span>
@@ -249,17 +265,6 @@
 	<!-- ====================  모달 창에 필요한 코드 시작  ======================== -->
 	<div id="dl_memList">Dialog Content.</div>
 	<!-- ====================  모달 창에 필요한 코드 끝  ======================== -->
-	<script type="text/javascript">
-	('#dl_memList').dialog({
-	    title: '회원목록',
-	    width: 400,
-	    height: 200,
-	    closed: false,
-	    cache: false,
-	    href: 'memberList.jsp',
-	    modal: true
-	});
-	</script>
 </body>
 </html>
 
