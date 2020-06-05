@@ -1,4 +1,4 @@
-package com.mvc2;
+package com.mvc3;
 
 import java.io.Reader;
 
@@ -14,11 +14,11 @@ import org.apache.log4j.Logger;
 
 import jsp.dept.DeptDao;
 
-public class MemberDao {
-	Logger logger = Logger.getLogger(MemberDao.class);
+public class MemberDao3 {
+	Logger logger = Logger.getLogger(MemberDao3.class);
 	String resource= "orm/mybatis/Configuration.xml";
 	SqlSessionFactory sqlMapper =null;
-	public MemberDao() { 
+	public MemberDao3() { 
 		sqlMapper = MyBatisCommonFactory.getSqlSessionFactory();
 	}
 	public String login(Map<String, Object> pMap) {
@@ -64,7 +64,7 @@ public class MemberDao {
 	    	  return result;
 	}
 	public static void main(String[] args) {
-		MemberDao mdao = new MemberDao();
+		MemberDao3 mdao = new MemberDao3();
 		Map<String,Object> rmap = new HashMap<String, Object>();
 		rmap.put("mem_id", "tkdgus");
 		rmap.put("mem_pw", 123);

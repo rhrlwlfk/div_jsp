@@ -1,5 +1,6 @@
-package com.mvc2;
+package com.mvc3;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,21 +15,31 @@ import org.apache.log4j.Logger;
 
 import com.mvc3.ModelAndView;
 
-public class MemberController implements Controller{
-	Logger logger = Logger.getLogger(MemberController.class);
+public class MemberController3 implements Controller2020{
+	Logger logger = Logger.getLogger(MemberController3.class);
 	String crud = null;
-	MemberLogic memLogic = null;
-	public MemberController(String crud) {
+	MemberLogic3 memLogic = null;
+	public MemberController3(String crud) {
 		this.crud = crud;
-		memLogic = new MemberLogic();
+		memLogic = new MemberLogic3();
 		// TODO Auto-generated constructor stub
 	}
-	public ModelAndView process(String work,HttpServletRequest req, HttpServletResponse res) throws ServletException {
-		return new ModelAndView();
+	public ModelAndView process(String requestName,HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException {
+		logger.info("process[ModelAndView] 호출 성공,requestName:" +requestName);
+		ModelAndView mav = new ModelAndView(req,res);
+		mav.setViewName(requestName);
+		if("member/memberList".equals(requestName)) {
+			mav.setViewName("/member/memberList3.jsp");
+			return null;
+		}else if("zipcodeList".equals(requestName)) {
+			return null;
+		}
+		
+		return mav;
 	}
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws ServletException {
-		logger.info("process 호출성공, crud:" +crud);//로그 확인 
+		logger.info("process[String] 호출성공, crud:" +crud);//로그 확인 
 		//여러가지 업무가 나눠질수 있으니까 
 		String path = "";
 		if("login".equals(crud)) {

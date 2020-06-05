@@ -317,7 +317,7 @@
 	<!--====================== 사원등록 시작 =======================-->
 	<div id="dlg_ins" data-options="closed:true, title:'사원정보 입력',footer:'#d_ins', modal:'true'" class="easyui-dialog" style="width:100%;max-width:480px;padding:30px 60px">
 		<form id="f_ins"> 
-<div style="margin-bottom:10px">
+		<div style="margin-bottom:10px">
 			<input class="easyui-numberbox" id="empno" name="empno" label="사원번호" data-options="prompt:'Enter a EmpNO'" style="width:150px">
 			</div>
 			<div style="margin-bottom:10px">

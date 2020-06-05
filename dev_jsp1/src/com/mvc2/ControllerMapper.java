@@ -14,10 +14,11 @@ public class ControllerMapper {
 			logger.info("str:"+ str);
 		}
 		//갯수가 2개가있어야한다. 
-		if(commands.length==2) {
+		if(commands.length == 2) {
 			String work = commands[0];
 			String requestName = commands[1];
 			if("member".equals(work)) {
+				logger.info("MemberController 인스턴스화!");
 				controller = new MemberController(crud);
 			}
 		}

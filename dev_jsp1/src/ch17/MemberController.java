@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 
 public class MemberController {
 	Logger logger = Logger.getLogger(MemberController.class);
-	MemberDao mDao = new MemberDao();
+	MemberDao3 mDao = new MemberDao3();
 	public void execute(HttpServletRequest req, HttpServletResponse rs) {
 		logger.info("excute 호출");
 		//너 회원가입 할꺼야?

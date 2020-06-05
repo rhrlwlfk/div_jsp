@@ -21,7 +21,7 @@ public class FrontMVC2 extends HttpServlet {
 	Logger logger = Logger.getLogger(FrontMVC2.class);
 	public void doService(HttpServletRequest req,
             HttpServletResponse res) throws ServletException, IOException {
-			logger.info("doGet 호출성공");
+			logger.info("doService 호출성공");
 			//==>dev_jsp/member/meberList.mvc2
 			String requestURI  = req.getRequestURI();// PORT번호다음 경로를 가져온것이다. 현재주소를가져온다
 			logger.info("requestURL:"+requestURI);//memberList.mvc2?crud=sel&6
